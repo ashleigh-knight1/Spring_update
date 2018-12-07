@@ -27,7 +27,7 @@ public class Messages {
 
     @NotNull
     @DateTimeFormat(pattern="dd/MM/yyyy")
-    private Date posteddate;
+    private String posteddate;
 
     public long getId() {
         return id;
@@ -53,11 +53,11 @@ public class Messages {
         this.sentby = sentby;
     }
 
-    public Date getPosteddate() {
+    public String getPosteddate() {
         return posteddate;
     }
 
-    public void setPosteddate(Date posteddate) {
+    public void setPosteddate(String posteddate) {
         this.posteddate = posteddate;
     }
 }

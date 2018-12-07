@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
 </head>
 <body>
+<h1> Twitter Feed</h1>
 <div class="container">
     <div class="jumbotron">
-            <a class="btn btn-primary btn-lg" href="/add">Add a Message</a>
+            <a class="btn btn-primary btn-lg" href="/add">Add a Tweet</a>
 
         <div th:each="message:${messages}">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <b th:text="${messages.content}"><</b><br/>
-                    <small th:inline="text">[[${messages.sentby}]], [[${messages.posteddate}]] </small>
+                    <b th:text="${message.content}"></b>
+                    <small th:inline="text">[[${message.sentby}]], [[${message.posteddate}]] </small>
                 </div>
             </div>
+            <td>
+                <a th:href="@{/detail/{id}(id=${message.id})}">View Tweet</a>
+            </td>
         </div>
     </div>
 </div>

@@ -14,30 +14,32 @@ public class HomeController {
     MessagesRepository messagesRepository;
 
     @RequestMapping("/")
-    public String listMessages(Model model){
+    public String listMessages(Model model) {
         model.addAttribute("messages", messagesRepository.findAll());
         return "list";
     }
 
     @GetMapping("/add")
-    public String messageForm(Model model){
+    public String messageForm(Model model) {
         model.addAttribute("message", new Messages());
         return "messageForm";
     }
 
     @PostMapping("/process")
     public String processMessages(@Valid Messages message,
-    BindingResult result) {
+                                  BindingResult result) {
         if (result.hasErrors()) {
             return "messageForm";
         }
         messagesRepository.save(message);
         return "redirect:/";
     }
-   /* @RequestMapping("messages/{id}")
-    public String viewMessages(@PathVariable("id") long id, Model model){
-        model.addAttribute("message", messagesRepository.findById(id));
+
+    @RequestMapping("/detail/{id}")
+    public String showMessage(@PathVariable("id") long id, Model model) {
+        model.addAttribute("message", messagesRepository.findById(id).get());
         return "view";
-        //findOne (id) doesnt work so i used find By id. */
+
     }
+}
 
